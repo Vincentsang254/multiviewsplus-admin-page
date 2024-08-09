@@ -73,6 +73,7 @@ const Login = () => {
 									id='password'
 									type={showPassword ? "text" : "password"}
 									name='password'
+									icon={HiEye}
 									placeholder='Enter your password'
 									rightIcon={showPassword ? HiEyeOff : HiEye}
 									onClick={togglePasswordVisibility}
