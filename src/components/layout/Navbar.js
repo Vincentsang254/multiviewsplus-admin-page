@@ -84,72 +84,6 @@ const Navbar = () => {
 									>
 										Home
 									</Link>
-									<Link
-										to='/jackpots'
-										className={`${
-											window.location.pathname === "/jackpots"
-												? "text-blue-400"
-												: "text-white"
-										} hover:text-blue-400`}
-										onClick={() => setMenuOpen(false)}
-									>
-										Jackpots
-									</Link>
-									<Link
-										to='/vip'
-										className={`${
-											window.location.pathname === "/vip"
-												? "text-blue-400"
-												: "text-white"
-										} hover:text-blue-400`}
-										onClick={() => setMenuOpen(false)}
-									>
-										Vip Tips
-									</Link>
-									<Link
-										to='/previous'
-										className={`${
-											window.location.pathname === "/previous"
-												? "text-blue-400"
-												: "text-white"
-										} hover:text-blue-400`}
-										onClick={() => setMenuOpen(false)}
-									>
-										Previous Winnings
-									</Link>
-									<Link
-										to='/bet-of-the-day'
-										className={`${
-											window.location.pathname === "/bet-of-the-day"
-												? "text-blue-400"
-												: "text-white"
-										} hover:text-blue-400`}
-										onClick={() => setMenuOpen(false)}
-									>
-										Bet Of The Day
-									</Link>
-									<Link
-										to='/contact'
-										className={`${
-											window.location.pathname === "/contact"
-												? "text-blue-400"
-												: "text-white"
-										} hover:text-blue-400`}
-										onClick={() => setMenuOpen(false)}
-									>
-										Contact
-									</Link>
-									<Link
-										to='/profile'
-										className={`${
-											window.location.pathname === "/profile"
-												? "text-blue-400"
-												: "text-white"
-										} hover:text-blue-400`}
-										onClick={() => setMenuOpen(false)}
-									>
-										Profile
-									</Link>
 									<button
 										onClick={handleLogout}
 										className='text-white hover:text-blue-400 focus:outline-none'
@@ -169,9 +103,6 @@ const Navbar = () => {
 									</button>
 								</div>
 								<div className='hidden md:flex gap-4'>
-									<Link to='/signup' className='text-white hover:text-blue-400'>
-										Sign Up
-									</Link>
 									<Link to='/login' className='text-white hover:text-blue-400'>
 										Sign In
 									</Link>
@@ -193,48 +124,6 @@ const Navbar = () => {
 							</Link>
 							{id && (
 								<>
-									<Link
-										to='/jackpots'
-										className='block px-4 py-2 hover:bg-gray-200'
-										onClick={() => setMenuOpen(false)}
-									>
-										Jackpots
-									</Link>
-									<Link
-										to='/vip'
-										className='block px-4 py-2 hover:bg-gray-200'
-										onClick={() => setMenuOpen(false)}
-									>
-										Vip Tips
-									</Link>
-									<Link
-										to='/previous'
-										className='block px-4 py-2 hover:bg-gray-200'
-										onClick={() => setMenuOpen(false)}
-									>
-										Previous Winnings
-									</Link>
-									<Link
-										to='/bet-of-the-day'
-										className='block px-4 py-2 hover:bg-gray-200'
-										onClick={() => setMenuOpen(false)}
-									>
-										Bet Of The Day
-									</Link>
-									<Link
-										to='/contact'
-										className='block px-4 py-2 hover:bg-gray-200'
-										onClick={() => setMenuOpen(false)}
-									>
-										Contact
-									</Link>
-									<Link
-										to='/profile'
-										className='block px-4 py-2 hover:bg-gray-200'
-										onClick={() => setMenuOpen(false)}
-									>
-										Profile
-									</Link>
 									<button
 										onClick={handleLogout}
 										className='block w-full text-left px-4 py-2 hover:bg-gray-200'
@@ -245,13 +134,6 @@ const Navbar = () => {
 							)}
 							{!id && (
 								<>
-									<Link
-										to='/signup'
-										className='block px-4 py-2 hover:bg-gray-200'
-										onClick={() => setMenuOpen(false)}
-									>
-										Sign Up
-									</Link>
 									<Link
 										to='/login'
 										className='block px-4 py-2 hover:bg-gray-200'
