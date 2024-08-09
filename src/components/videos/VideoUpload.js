@@ -1,18 +1,44 @@
 /** @format */
 
 import React, { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { createVideo } from "../../features/slice/videosSlice";
 import { toast } from "react-toastify";
+import { Spinner } from "react-bootstrap"; // Import Spinner if using react-bootstrap
 
 const VideoUpload = () => {
 	const dispatch = useDispatch();
+	const { status, error } = useSelector((state) => state.videos); // Assuming your redux state contains `status` and `error` for videos
 	const [formData, setFormData] = useState({
 		name: "",
 		desc: "",
 		category: "Korean Series",
 	});
 	const [videoFile, setVideoFile] = useState(null);
+	const [errors, setErrors] = useState({});
+
+	const validateForm = () => {
+		let valid = true;
+		let errors = {};
+
+		if (!formData.name) {
+			errors.name = "Title is required";
+			valid = false;
+		}
+
+		if (!formData.desc) {
+			errors.desc = "Description is required";
+			valid = false;
+		}
+
+		if (!videoFile) {
+			errors.videoFile = "Please select a video file";
+			valid = false;
+		}
+
+		setErrors(errors);
+		return valid;
+	};
 
 	const handleInputChange = (e) => {
 		const { name, value } = e.target;
@@ -26,8 +52,7 @@ const VideoUpload = () => {
 	const handleSubmit = async (e) => {
 		e.preventDefault();
 
-		if (!videoFile) {
-			toast.error("Please select a video file.", { position: "bottom-left" });
+		if (!validateForm()) {
 			return;
 		}
 
@@ -63,8 +88,11 @@ const VideoUpload = () => {
 						value={formData.name}
 						onChange={handleInputChange}
 						required
-						className='mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-1 focus:ring-indigo-500 sm:text-sm'
+						className={`mt-1 block w-full px-3 py-2 border rounded-md shadow-sm sm:text-sm ${
+							errors.name ? "border-red-500" : "border-gray-300"
+						}`}
 					/>
+					{errors.name && <p className='text-red-500 text-sm'>{errors.name}</p>}
 				</div>
 				<div>
 					<label
@@ -79,8 +107,11 @@ const VideoUpload = () => {
 						value={formData.desc}
 						onChange={handleInputChange}
 						required
-						className='mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-1 focus:ring-indigo-500 sm:text-sm'
+						className={`mt-1 block w-full px-3 py-2 border rounded-md shadow-sm sm:text-sm ${
+							errors.desc ? "border-red-500" : "border-gray-300"
+						}`}
 					/>
+					{errors.desc && <p className='text-red-500 text-sm'>{errors.desc}</p>}
 				</div>
 				<div>
 					<label
@@ -120,14 +151,31 @@ const VideoUpload = () => {
 						accept='video/mp4'
 						onChange={handleFileChange}
 						required
-						className='mt-1 block w-full text-sm text-gray-500 file:py-2 file:px-4 file:border file:border-gray-300 file:rounded-md file:text-sm file:font-medium file:bg-gray-50 hover:file:bg-gray-100'
+						className={`mt-1 block w-full text-sm text-gray-500 file:py-2 file:px-4 file:border file:border-gray-300 file:rounded-md file:text-sm file:font-medium file:bg-gray-50 hover:file:bg-gray-100 ${
+							errors.videoFile ? "border-red-500" : "border-gray-300"
+						}`}
 					/>
+					{errors.videoFile && (
+						<p className='text-red-500 text-sm'>{errors.videoFile}</p>
+					)}
 				</div>
 				<button
 					type='submit'
-					className='w-full px-4 py-2 bg-indigo-600 text-white font-semibold rounded-md shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500'
+					disabled={status === "pending"}
+					className={`w-full px-4 py-2 text-white font-semibold rounded-md shadow-sm ${
+						status === "pending"
+							? "bg-gray-400 cursor-not-allowed"
+							: "bg-indigo-600 hover:bg-indigo-700"
+					} focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500`}
 				>
-					Upload Video
+					{status === "pending" ? (
+						<span className='flex items-center justify-center'>
+							<Spinner aria-label='Loading...' size='sm' />
+							<span className='pl-3'>Uploading...</span>
+						</span>
+					) : (
+						"Upload Video"
+					)}
 				</button>
 			</form>
 		</div>

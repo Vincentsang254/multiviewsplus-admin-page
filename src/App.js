@@ -8,6 +8,7 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 // pages
 import Home from "./pages/Home";
+import Login from "./pages/Login";
 
 import Navbar from "./components/layout/Navbar";
 import Footer from "./components/layout/Footer";
@@ -28,6 +29,7 @@ const App = () => {
 				<div className='content-wrap'>
 					<Routes>
 						<Route exact path='/' element={<Home />} />
+						<Route exact path='/login' element={<Login />} />
 
 						<Route path='*' element={<Notfound />} />
 					</Routes>
