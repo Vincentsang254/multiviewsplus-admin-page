@@ -118,7 +118,12 @@ const Login = () => {
 
 							{auth.loginStatus === "rejected" && (
 								<Alert color='failure' icon={HiInformationCircle}>
-									<span className='font-medium'>{auth.loginError}</span>
+									{/* <span className='font-medium'>{auth.loginError}</span> */}
+									{auth.loginError.map((error, index) => (
+										<div key={index} className='font-medium'>
+											{error}
+										</div>
+									))}
 								</Alert>
 							)}
 						</Form>
