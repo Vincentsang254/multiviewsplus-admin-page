@@ -1,0 +1,80 @@
+/** @format */
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html,
+body,
+#root {
+	height: 100%;
+}
+
+.app-container {
+	display: flex;
+	flex-direction: column;
+	min-height: 100vh;
+}
+
+.content-wrap {
+	flex: 1;
+}
+
+/* Add this CSS to your index.css file */
+.button-fade {
+	transition: color 0.3s ease;
+}
+
+.button-fade:hover {
+	color: rgba(255, 255, 255, 0.7); /* Adjust the fade effect */
+}
+
+/* index.css */
+
+/* Transition for sliding in and out */
+.menu-enter {
+	transform: translateX(100%);
+	opacity: 0;
+}
+.menu-enter-active {
+	transform: translateX(0);
+	opacity: 1;
+	transition: transform 300ms ease-in-out, opacity 300ms ease-in-out;
+}
+.menu-exit {
+	transform: translateX(0);
+	opacity: 1;
+}
+.menu-exit-active {
+	transform: translateX(100%);
+	opacity: 0;
+	transition: transform 300ms ease-in-out, opacity 300ms ease-in-out;
+}
+
+/* Optional: Styling for the menu */
+.menu {
+	position: absolute;
+	top: 60px;
+	right: 0;
+	width: 200px;
+	background-color: white;
+	border: 1px solid #ddd;
+	border-radius: 4px;
+	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+	z-index: 1000;
+}
+
+/* index.css or a relevant CSS file */
+.sticky-navbar {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	z-index: 50;
+	background-color: #333; /* Adjust color as needed */
+	transition: transform 0.3s ease-in-out;
+}
+
+.navbar-hidden {
+	/* transform: translateY(100%); */
+}
