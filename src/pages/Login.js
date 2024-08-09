@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import { loginUser } from "../features/slice/authSlice";
 import { Alert, Button, Label, TextInput, Spinner } from "flowbite-react";
-import { HiInformationCircle, HiEye, HiEyeOff } from "react-icons/hi";
+import { HiInformationCircle, HiEye, HiEyeOff, HiMail } from "react-icons/hi";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 
@@ -46,7 +46,7 @@ const Login = () => {
 					validationSchema={validationSchema}
 					onSubmit={handleSubmit}
 				>
-					{({ values, handleChange, handleBlur, errors, touched }) => (
+					{({ values, handleChange, handleBlur }) => (
 						<Form className='space-y-4'>
 							<div>
 								<Label htmlFor='email' value='Email' />
@@ -54,16 +54,12 @@ const Login = () => {
 									as={TextInput}
 									id='email'
 									type='email'
-									placeholder='Enter your email'
 									name='email'
+									placeholder='Enter your email'
+									icon={HiMail}
 									onChange={handleChange}
 									onBlur={handleBlur}
 									value={values.email}
-									className={`mt-1 block w-full rounded-md shadow-sm focus:border-purple-500 focus:ring focus:ring-purple-500 focus:ring-opacity-50 ${
-										touched.email && errors.email
-											? "border-red-500"
-											: "border-gray-300"
-									}`}
 								/>
 								<ErrorMessage name='email'>
 									{(msg) => <div className='text-red-500 text-sm'>{msg}</div>}
@@ -72,33 +68,18 @@ const Login = () => {
 
 							<div>
 								<Label htmlFor='password' value='Password' />
-								<div className='relative'>
-									<Field
-										as={TextInput}
-										id='password'
-										type={showPassword ? "text" : "password"}
-										placeholder='Enter your password'
-										name='password'
-										onChange={handleChange}
-										onBlur={handleBlur}
-										value={values.password}
-										className={`mt-1 block w-full rounded-md shadow-sm focus:border-purple-500 focus:ring focus:ring-purple-500 focus:ring-opacity-50 pr-10 ${
-											touched.password && errors.password
-												? "border-red-500"
-												: "border-gray-300"
-										}`}
-									/>
-									<div
-										className='absolute inset-y-0 right-0 flex items-center pr-3 cursor-pointer'
-										onClick={togglePasswordVisibility}
-									>
-										{showPassword ? (
-											<HiEyeOff className='h-5 w-5 text-gray-500' />
-										) : (
-											<HiEye className='h-5 w-5 text-gray-500' />
-										)}
-									</div>
-								</div>
+								<Field
+									as={TextInput}
+									id='password'
+									type={showPassword ? "text" : "password"}
+									name='password'
+									placeholder='Enter your password'
+									rightIcon={showPassword ? HiEyeOff : HiEye}
+									onClick={togglePasswordVisibility}
+									onChange={handleChange}
+									onBlur={handleBlur}
+									value={values.password}
+								/>
 								<ErrorMessage name='password'>
 									{(msg) => <div className='text-red-500 text-sm'>{msg}</div>}
 								</ErrorMessage>
@@ -118,6 +99,7 @@ const Login = () => {
 									Forgot password?
 								</Link>
 							</div>
+
 							{auth.loginStatus === "pending" ? (
 								<Button disabled className='w-full mt-4'>
 									<Spinner aria-label='Loading...' size='sm' />
