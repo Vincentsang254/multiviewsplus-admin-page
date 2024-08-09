@@ -34,7 +34,7 @@ const Login = () => {
 		email: Yup.string()
 			.email("Please enter a valid email address")
 			.required("Email is required"),
-		password: Yup.string().required("Password is required"), // Custom error message
+		password: Yup.string().required("Password is required"),
 	});
 
 	return (
@@ -89,13 +89,13 @@ const Login = () => {
 										}`}
 									/>
 									<div
-										className='absolute inset-y-0 right-0 pr-3 flex items-center text-sm leading-5'
+										className='absolute inset-y-0 right-0 flex items-center pr-3 cursor-pointer'
 										onClick={togglePasswordVisibility}
 									>
 										{showPassword ? (
-											<HiEyeOff className='h-5 w-5 text-gray-500 cursor-pointer' />
+											<HiEyeOff className='h-5 w-5 text-gray-500' />
 										) : (
-											<HiEye className='h-5 w-5 text-gray-500 cursor-pointer' />
+											<HiEye className='h-5 w-5 text-gray-500' />
 										)}
 									</div>
 								</div>
