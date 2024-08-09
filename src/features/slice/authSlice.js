@@ -37,8 +37,8 @@ export const registerUser = createAsyncThunk(
 
 			return token;
 		} catch (error) {
-			console.log(error.response.data.message);
-			return rejectWithValue(error.response.data.message);
+			console.log(error.response.data.errors[0]);
+			return rejectWithValue(error.response.data.errors[0]);
 		}
 	}
 );
@@ -53,17 +53,12 @@ export const loginUser = createAsyncThunk(
 			});
 
 			const token = response.data.token;
-			if (!token) {
-				console.error("Token is not set or is undefined");
-			} else {
-				console.error(token);
-			}
 
 			localStorage.setItem("token", JSON.stringify(token));
 			return token;
 		} catch (error) {
-			console.log(error.response.data.message);
-			return rejectWithValue(error.response.data.message);
+			console.log(error.response.data.errors[0]);
+			return rejectWithValue(error.response.data.errors[0]);
 		}
 	}
 );
