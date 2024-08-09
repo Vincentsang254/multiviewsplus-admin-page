@@ -60,22 +60,8 @@ export const loginUser = createAsyncThunk(
 			localStorage.setItem("token", JSON.stringify(token));
 			return token;
 		} catch (error) {
-			// console.log(error.response.data.errors[0]);
-			// return rejectWithValue(error.response.data.errors[0]);
-			// Log the error for debugging purposes
-			console.log(error.response.data.errors);
-
-			// Handle the case where there are multiple errors
-			if (
-				error.response &&
-				error.response.data &&
-				Array.isArray(error.response.data.errors)
-			) {
-				return rejectWithValue(error.response.data.errors);
-			}
-
-			// Handle unexpected errors
-			return rejectWithValue(["An unexpected error occurred"]);
+			console.log(error.response.data.errors[0]);
+			return rejectWithValue(error.response.data.errors[0]);
 		}
 	}
 );
