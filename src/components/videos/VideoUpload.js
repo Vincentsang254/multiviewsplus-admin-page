@@ -2,7 +2,7 @@
 
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { createVideo } from "../slices/videosSlice"; // Adjust the import path as needed
+import { createVideo } from "../../components/videos/VideoUpload"; // Adjust the import path as needed
 import { toast } from "react-toastify";
 
 const VideoUpload = () => {
