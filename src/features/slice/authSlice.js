@@ -53,6 +53,11 @@ export const loginUser = createAsyncThunk(
 			});
 
 			const token = response.data.token;
+			if (!token) {
+				console.error("Token is not set or is undefined");
+			} else {
+				console.error(token);
+			}
 
 			localStorage.setItem("token", JSON.stringify(token));
 			return token;
