@@ -4,7 +4,7 @@ import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { createVideo } from "../../features/slice/videosSlice";
 import { toast } from "react-toastify";
-import { Spinner } from "react-bootstrap"; // Import Spinner if using react-bootstrap
+import { Spinner } from "flowbite-react";
 
 const VideoUpload = () => {
 	const dispatch = useDispatch();
