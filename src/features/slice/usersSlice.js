@@ -69,7 +69,7 @@ export const fetchUserCreatedToday = createAsyncThunk(
 
 export const fetchUsers = createAsyncThunk("users/fetchUsers", async () => {
 	try {
-		const response = await axios.get(`${url}/users/get-users`, setHeaders());
+		const response = await axios.get(`${url}/users/get`, setHeaders());
 
 		return response.data;
 	} catch (error) {
