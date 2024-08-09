@@ -1,7 +1,7 @@
 /** @format */
 
 import React, { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { createVideo } from "../../features/slice/videosSlice";
 import { toast } from "react-toastify";
 
@@ -46,11 +46,16 @@ const VideoUpload = () => {
 	};
 
 	return (
-		<div>
-			<h1>Upload Video</h1>
-			<form onSubmit={handleSubmit}>
+		<div className='max-w-3xl mx-auto p-6 bg-white shadow-md rounded-lg mt-24'>
+			<h1 className='text-2xl font-bold mb-6'>Upload Video</h1>
+			<form onSubmit={handleSubmit} className='space-y-4'>
 				<div>
-					<label htmlFor='name'>Title:</label>
+					<label
+						htmlFor='name'
+						className='block text-sm font-medium text-gray-700'
+					>
+						Title:
+					</label>
 					<input
 						type='text'
 						id='name'
@@ -58,26 +63,39 @@ const VideoUpload = () => {
 						value={formData.name}
 						onChange={handleInputChange}
 						required
+						className='mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-1 focus:ring-indigo-500 sm:text-sm'
 					/>
 				</div>
 				<div>
-					<label htmlFor='desc'>Description:</label>
+					<label
+						htmlFor='desc'
+						className='block text-sm font-medium text-gray-700'
+					>
+						Description:
+					</label>
 					<textarea
 						id='desc'
 						name='desc'
 						value={formData.desc}
 						onChange={handleInputChange}
 						required
+						className='mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-1 focus:ring-indigo-500 sm:text-sm'
 					/>
 				</div>
 				<div>
-					<label htmlFor='category'>Category:</label>
+					<label
+						htmlFor='category'
+						className='block text-sm font-medium text-gray-700'
+					>
+						Category:
+					</label>
 					<select
 						id='category'
 						name='category'
 						value={formData.category}
 						onChange={handleInputChange}
 						required
+						className='mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-1 focus:ring-indigo-500 sm:text-sm'
 					>
 						<option value='Korean Series'>Korean Series</option>
 						<option value='Documentaries'>Documentaries</option>
@@ -89,7 +107,12 @@ const VideoUpload = () => {
 					</select>
 				</div>
 				<div>
-					<label htmlFor='video'>Video File:</label>
+					<label
+						htmlFor='video'
+						className='block text-sm font-medium text-gray-700'
+					>
+						Video File:
+					</label>
 					<input
 						type='file'
 						id='video'
@@ -97,9 +120,15 @@ const VideoUpload = () => {
 						accept='video/mp4'
 						onChange={handleFileChange}
 						required
+						className='mt-1 block w-full text-sm text-gray-500 file:py-2 file:px-4 file:border file:border-gray-300 file:rounded-md file:text-sm file:font-medium file:bg-gray-50 hover:file:bg-gray-100'
 					/>
 				</div>
-				<button type='submit'>Upload Video</button>
+				<button
+					type='submit'
+					className='w-full px-4 py-2 bg-indigo-600 text-white font-semibold rounded-md shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500'
+				>
+					Upload Video
+				</button>
 			</form>
 		</div>
 	);
