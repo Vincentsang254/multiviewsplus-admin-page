@@ -11,10 +11,10 @@ const Footer = () => {
 			<div className='container mx-auto flex flex-col md:flex-row justify-between items-center'>
 				<div className='flex flex-col items-center md:items-start'>
 					<Link to='/' className='text-2xl font-bold hover:text-blue-400'>
-						Monsters
+						Multiviews Plus
 					</Link>
 					<p className='mt-2 text-sm'>
-						© {currentYear} Monsters. All rights reserved.
+						© {currentYear} Multiviews Plus. All rights reserved.
 					</p>
 				</div>
 				<div className='flex flex-col md:flex-row mt-4 md:mt-0 gap-4'>
